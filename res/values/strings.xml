@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">2cloud</string>
+    <string name="default_device_name">Chrome</string>
+    <string name="url_input_button">Send</string>
+    <string name="url_input_label">URL:</string>
+</resources>
