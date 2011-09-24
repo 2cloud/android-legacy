@@ -72,4 +72,29 @@ public class RequestHelperTest extends TestCase {
 		String escapedQueryString = "?ampersandValue=special%26character&special%26character=ampersandName&equalsValue=special%3Dcharacter&special%3Dcharacter=equalsName&spaceValue=special%20character&special%20character=spaceName&percentValue=special%25character&special%25character=percentName&hashValue=special%23character&special%23character=hashName&questionValue=special%3Fcharacter&special%3Fcharacter=questionName";
 		assertEquals(queryString, escapedQueryString);
 	}
+	
+	public void testNullInputBuildQueryString() {
+		String queryString = RequestHelper.buildQueryString(null);
+		assertEquals(queryString, "");
+	}
+	
+	public void testEmptyInputBuildQueryString() {
+		String queryString = RequestHelper.buildQueryString(new ArrayList<NameValuePair>());
+		assertEquals(queryString, "");
+	}
+	
+	public void testTrailingSlashRemovalSanitiseHost() {
+		String host = "http://node.2cloudproject.com/";
+		String sanitisedHost = "http://node.2cloudproject.com";
+		host = RequestHelper.sanitiseHost(host);
+		assertEquals(host, sanitisedHost);
+	}
+	
+	public void testNullInputSanitiseHost() {
+		try {
+			RequestHelper.sanitiseHost(null);
+			fail("Should raise a NullPointerException");
+		} catch (NullPointerException e) {
+		}
+	}
 }

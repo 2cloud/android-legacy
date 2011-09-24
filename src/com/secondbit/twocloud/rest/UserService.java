@@ -30,6 +30,7 @@ public class UserService extends IntentService {
 	}
 	
 	private String _buildGetRequestUrl(String host, String query) {
+		host = RequestHelper.sanitiseHost(host);
 		return host + REST_BASE + query;
 	}
 }

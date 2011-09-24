@@ -21,6 +21,9 @@ public class RequestHelper {
 	public static final String INTENT_EXTRA_QUERY = "query";
 	
 	public static String buildQueryString(List<NameValuePair> params) {
+		if(params == null || params.size() == 0) {
+			return "";
+		}
 		String query = QUERY_PREPEND;
 		int size = params.size();
 		for(int index=0; index < size; index++) {
@@ -31,5 +34,12 @@ public class RequestHelper {
 			query = query.substring(0, query.length() - 1);
 		}
 		return query;
+	}
+	
+	public static String sanitiseHost(String host) throws NullPointerException {
+		if(host.endsWith("/")) {
+			host = host.substring(0, host.length() - 1);
+		}
+		return host;
 	}
 }
